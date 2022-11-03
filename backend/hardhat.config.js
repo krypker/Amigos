@@ -4,7 +4,6 @@ require("@nomiclabs/hardhat-etherscan");
 const {
   MAINNET_API_URL,
   GOERLI_API_URL,
-  RINKEBY_API_URL,
   GANACHE_API_URL,
   PRIVATE_KEY,
   ETHERSCAN_API_KEY,
@@ -33,11 +32,6 @@ module.exports = {
     },
     goerli: {
       url: GOERLI_API_URL,
-      accounts: [`0x${PRIVATE_KEY}`],
-      gasPrice: 55000000000,
-    },
-    rinkeby: {
-      url: RINKEBY_API_URL,
       accounts: [`0x${PRIVATE_KEY}`],
       gasPrice: 55000000000,
     },

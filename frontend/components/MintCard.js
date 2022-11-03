@@ -1,6 +1,7 @@
 import React from "react";
-import { popupImage } from "../pages/utils/util";
+import { popupImage } from "../lib/utils/util";
 import { ENSName } from "react-ens-name";
+import Image from "next/image";
 
 export default function MintCard({
   identificador,
@@ -37,7 +38,7 @@ export default function MintCard({
       <img
         className='lg:h-auto md:h-36 sm:h-36 w-full object-cover object-center'
         onClick={() => popupImage(`${identificador}`)}
-        src={picture}
+        src={`${picture}`}
         alt='Token'
       />
       {minting == identificador && (

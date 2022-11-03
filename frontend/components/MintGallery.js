@@ -4,12 +4,12 @@ import {
   mintWhitelist,
   tokenIsClaimed,
   getVerifyMerkleTree,
-} from "../pages/utils/_web3";
+} from "../lib/utils/_web3";
 import {
   checkIsMerkleTreeValid,
   joinDataArray,
   popupConfirmation,
-} from "../pages/utils/util";
+} from "../lib/utils/util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import images from "./images.js";
@@ -17,14 +17,26 @@ import MintCard from "./MintCard";
 
 export default function MintGallery() {
   const { active, account } = useWeb3React();
-  const [whitelistMintStatus, setWhitelistMintStatus] = useState();
-  const [whitelistProof, setWhitelistProof] = useState([]);
   const [whitelistValid, setWhitelistValid] = useState(false);
+  const [whitelistMintStatus, setWhitelistMintStatus] = useState();
   const [checkActive, setCheckActive] = useState([1]);
-  const [tokenMinted, setTokenMinted] = useState(0);
+  const [whitelistProof, setWhitelistProof] = useState([]);
   const [displayTokens, setDisplayTokens] = useState([]);
+  const [tokenMinted, setTokenMinted] = useState(0);
   const [tokenClaimed, setTokenClaimed] = useState(0);
   const [tokenMinting, setTokenMinting] = useState(0);
+
+  const onMintWhitelist = async (tokenId) => {
+    setTokenMinting(tokenId);
+    const { success, blockHash } = await mintWhitelist(
+      account,
+      whitelistProof,
+      tokenId
+    );
+    popupConfirmation(success, blockHash, tokenId);
+    setWhitelistMintStatus(success);
+    setTokenMinting(0);
+  };
 
   useEffect(() => {
     if (!active || !account) {
@@ -45,32 +57,20 @@ export default function MintGallery() {
     if (account) {
       chackValidMerkleTree();
     }
-  }, [account]);
+  }, [account, active]);
 
   useEffect(() => {
     setWhitelistMintStatus(false);
     async function getDataArray() {
       const { arrayTokens, totalMinted } = await joinDataArray(tokenMinting);
-      
+
       setDisplayTokens(arrayTokens == null ? [] : arrayTokens);
       setTokenMinted(totalMinted);
     }
 
     getDataArray();
-  }, [whitelistMintStatus, tokenClaimed]);
+  }, [whitelistMintStatus, tokenClaimed, tokenMinting]);
 
-  const onMintWhitelist = async (tokenId) => {
-    setTokenMinting(tokenId);
-    const { success, blockHash } = await mintWhitelist(
-      account,
-      whitelistProof,
-      tokenId
-    );
-    popupConfirmation(success, blockHash, tokenId);
-    setWhitelistMintStatus(success);
-    setTokenMinting(0);
-  };
-  
   return (
     <div className='pt-8 py-44'>
       <div className='mx-auto mb-6 mt-3 lg:px-24 px-6 flex items-center text-center lg:justify-start justify-center lg:gap-5 gap-3 text-gray-400 lg:text-md text-sm'>
@@ -150,5 +150,3 @@ export default function MintGallery() {
     </div>
   );
 }
-
-

@@ -1,6 +1,6 @@
 import { Web3Provider } from "@ethersproject/providers";
 import { Web3ReactProvider } from "@web3-react/core";
-import { MetaMaskProvider } from "../pages/hooks/metamask";
+import { MetaMaskProvider } from "../lib/hooks/metamask";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../styles/globals.css";

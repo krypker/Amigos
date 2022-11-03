@@ -1,9 +1,9 @@
-import useMetaMask from "../pages/hooks/metamask";
+import useMetaMask from "../lib/hooks/metamask";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
-import { popupForm } from "../pages/utils/util";
+import { popupForm } from "../lib/utils/util";
 import WalletButton from "./WalletButton";
 import Link from "next/link";
 
@@ -16,14 +16,14 @@ const Header = () => {
     <div className='flex justify-between lg:justify-center items-center mx-auto w-full'>
       <div className='flex flex-beteew p-6 w-1/4'>
         <ul className='flex menu items-start justify-start gap-3'>
-          <li>
+          <li key='1'>
             <Link href='https://cuatroceronueve.io'>
               <a target='_blank' className='social'>
                 <FontAwesomeIcon icon={faGlobe} />
               </a>
             </Link>
           </li>
-          <li>
+          <li key='2'>
             <Link href='https://discord.gg/B9Z37vYnNv'>
               <a target='_blank' className='social'>
                 <FontAwesomeIcon icon={faDiscord} />
@@ -35,6 +35,7 @@ const Header = () => {
       <div className='lg:block hidden w-5/6 md:w-4/6'>
         <ul className='flex items-center justify-end gap-3'>
           <li
+            key='1'
             className={!isActive || account !== owner_address ? "hidden" : ""}
           >
             <Link href='/'>
@@ -42,6 +43,7 @@ const Header = () => {
             </Link>
           </li>
           <li
+            key='2'
             className={!isActive || account !== owner_address ? "hidden" : ""}
           >
             <Link href='/whitelist'>
@@ -49,13 +51,14 @@ const Header = () => {
             </Link>
           </li>
           <li
+            key='3'
             className={!isActive || account !== owner_address ? "hidden" : ""}
           >
             <a className='link' onClick={() => popupForm()}>
               Transfer
             </a>
           </li>
-          <li className='flex'>
+          <li key='4' className='flex'>
             <WalletButton />
           </li>
         </ul>
@@ -76,6 +79,7 @@ const Header = () => {
           }
         >
           <li
+            key='1'
             className={!isActive || account !== owner_address ? "hidden" : ""}
           >
             <Link href='/'>
@@ -83,6 +87,7 @@ const Header = () => {
             </Link>
           </li>
           <li
+            key='2'
             className={!isActive || account !== owner_address ? "hidden" : ""}
           >
             <Link href='/whitelist'>
@@ -90,13 +95,14 @@ const Header = () => {
             </Link>
           </li>
           <li
+            key='3'
             className={!isActive || account !== owner_address ? "hidden" : ""}
           >
             <a href='#' className='social-menu' onClick={() => popupForm()}>
               Transfer
             </a>
           </li>
-          <li>
+          <li key='4'>
             <WalletButton />
           </li>
         </ul>

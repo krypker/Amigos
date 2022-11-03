@@ -9,12 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Helvetica", "Arial", "sans-serif"],
-      },
-      backgroundImage: (theme) => ({
-        "wave-pattern-white": "url('../public/wave-white.png')",
-        "yellow-dots": "url('../public/pattern-yellow-dots.png')",
-        "svg-dots": "url('../public/icons8-music.svg')",
-      }),
+      }
     },
   },
   plugins: [],

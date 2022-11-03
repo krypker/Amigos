@@ -1,9 +1,9 @@
 import json
 
-baseURI_IMAGE = "https://gateway.pinata.cloud/ipfs/QmakNUgFuauffT4xKm9qBaTuQv5jutQW4bzNtWn6QPcLSG/"
+baseURI_IMAGE = "https://nftstorage.link/ipfs/bafybeiavt5j7fi4ll2z2fqwif7265yjpfebprjfnqg6smnzzicjjkggoye/"
 
 def generateMetadata(jsonFolderPath):
-    for idx in range(1, 2):
+    for idx in range(1, 410):
       idxFill = str(idx).zfill(3)
       data = {}
       data['name'] = "20AMIGOS #" + str(idx)
@@ -22,4 +22,3 @@ def generateMetadata(jsonFolderPath):
 
 filepath = "metadata/generated/"
 generateMetadata(filepath)
-

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import axios from "axios";
-import useMetaMask from "../pages/hooks/metamask";
+import useMetaMask from "../lib/hooks/metamask";
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
@@ -29,7 +29,7 @@ const Whitelist = ({ data }) => {
 
   const goToReset = async (e) => {
     e.preventDefault();
-    const result = await fetch(`/api/getUsers`, {
+    const result = await fetch("/api/getUsers", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -37,13 +37,12 @@ const Whitelist = ({ data }) => {
     setQuery("");
     setFilter(await result.json());
   };
- 
+
   return (
     <div className='bg-white h-screen container mx-auto'>
       <Head>
         <title>Amigos 409</title>
-        <meta name='description' content='Project 409' />
-        <link rel='icon' href='icons8-music.svg' />
+        <meta name='description' content='409 Amigos' />
       </Head>
       <main>
         <Header />

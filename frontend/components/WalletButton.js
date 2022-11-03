@@ -1,25 +1,10 @@
-import React, { useEffect } from "react";
-import useMetaMask from "../pages/hooks/metamask";
+import React from "react";
+import useMetaMask from "../lib/hooks/metamask";
 import Login from "./Login";
-//import { getUserOpenSea, abridgeAddress } from "../pages/utils/util";
-//import { useENSName } from "use-ens-name";
 import { ENSName } from "react-ens-name";
 
 export default function WalletButton() {
   const { connect, disconnect, isActive, account } = useMetaMask() || {};
-  //const [userOpenSea, setUserOpenSea] = useState(null);
-  //const [userENS, setUserENS] = useState(null);
-  //const MyENSName = useENSName(account) || null;
-
-  useEffect(() => {
-    async function getOpenSea() {
-      //const response = await getUserOpenSea(account);
-      //const result = (await response) || null;
-      //setUserENS(MyENSName);
-      //setUserOpenSea(result);
-    }
-    //getOpenSea();
-  }, [account]);
 
   return (
     <div className='align-text-bottom mx-auto w-48 text-center'>

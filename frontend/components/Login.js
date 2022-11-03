@@ -5,30 +5,22 @@ import {
   tokenIsClaimed,
   getTokenAvatar,
   getVerifyMerkleTree,
-} from "../pages/utils/_web3";
-import { checkIsMerkleTreeValid, popupImage } from "../pages/utils/util";
+} from "../lib/utils/_web3";
+import { checkIsMerkleTreeValid, popupImage } from "../lib/utils/util";
 
 export default function Login() {
-  const { active, account } = useWeb3React();
   const [whitelistValid, setWhitelistValid] = useState(false);
   const [urlWhiteList, setUrlWhiteList] = useState(false);
   const [tokenAvatar, setTokenAvatar] = useState(false);
   const [tokenClaimed, setTokenClaimed] = useState(0);
   const [loading, setLoading] = useState(true);
+  const { active, account } = useWeb3React();
 
   let imgAvatar = null;
   let imgNoWhiteList = null;
   let imgMintAvailable = null;
 
   const OWNER_ADDRESS = process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
-
-  useEffect(() => {
-    async function checkWhiteListPage() {
-      setUrlWhiteList(window.location.pathname.includes("whitelist"));
-    }
-
-    checkWhiteListPage();
-  }, []);
 
   useEffect(() => {
     if (!active || !account) {
@@ -55,7 +47,15 @@ export default function Login() {
     if (account) {
       chackValidMerkleTree();
     }
-  }, [account]);
+  }, [account, active]);
+
+  useEffect(() => {
+    async function checkWhiteListPage() {
+      setUrlWhiteList(window.location.pathname.includes("whitelist"));
+    }
+
+    checkWhiteListPage();
+  }, []);
 
   imgAvatar = active && tokenAvatar && !urlWhiteList && (
     <div className='mx-auto'>
@@ -65,6 +65,7 @@ export default function Login() {
         src={`./tokens/${tokenAvatar}.png`}
         width='100'
         height='100'
+        alt='Avatar'
       />
     </div>
   );

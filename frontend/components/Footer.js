@@ -1,5 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon }  from "../node_modules/@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "../node_modules/@fortawesome/react-fontawesome";
 import {
   faTwitter,
   faSpotify,
@@ -9,7 +9,7 @@ import {
 
 export default function Footer() {
   return (
-    <div className='bg-black'>    
+    <div className='bg-black'>
       <div className=' bg-repeat-x h-6 relative -top-4 hidden'></div>
 
       <div className='container mx-auto text-center w-auto'>
@@ -21,37 +21,41 @@ export default function Footer() {
         </div>
         <div className='pb-0'>
           <ul className='flex menu items-center justify-center gap-5'>
-            <li>
+            <li key='1'>
               <a
                 className='social-lg'
                 target='_blank'
+                rel='noreferrer'
                 href='https://twitter.com/cuatroceronueve'
               >
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
             </li>
-            <li>
+            <li key='2'>
               <a
                 className='social-lg'
                 target='_blank'
+                rel='noreferrer'
                 href='https://open.spotify.com/artist/5N3uclenCzYXitAF8QkuFt'
               >
                 <FontAwesomeIcon icon={faSpotify} />
               </a>
             </li>
-            <li>
+            <li key='3'>
               <a
                 className='social-lg'
                 target='_blank'
+                rel='noreferrer'
                 href='https://www.youtube.com/user/cuatroceronueve'
               >
                 <FontAwesomeIcon icon={faYoutube} />
               </a>
             </li>
-            <li>
+            <li key='4'>
               <a
                 className='social-lg'
                 target='_blank'
+                rel='noreferrer'
                 href='https://www.instagram.com/cuatroceronueve_/'
               >
                 <FontAwesomeIcon icon={faInstagram} />
