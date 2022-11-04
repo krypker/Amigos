@@ -6,7 +6,11 @@ import {
   getTokenAvatar,
   getVerifyMerkleTree,
 } from "../lib/utils/_web3";
-import { checkIsMerkleTreeValid, popupImage } from "../lib/utils/util";
+import {
+  checkIsMerkleTreeValid,
+  checkIsMerkleTreeValidJson,
+  popupImage,
+} from "../lib/utils/util";
 
 export default function Login() {
   const [whitelistValid, setWhitelistValid] = useState(false);
@@ -31,23 +35,15 @@ export default function Login() {
     async function chackValidMerkleTree() {
       setLoading(true);
 
-      //const { proof } = await checkIsMerkleTreeValid(account);
-      //console.log(proof);
+      const { proof } = await checkIsMerkleTreeValidJson(account);
       const resultAvatar = await getTokenAvatar(account);
       setTokenAvatar(resultAvatar);
-      console.log("Token Claimed:" + resultAvatar);
 
       const resultClaimed = await tokenIsClaimed(account);
       setTokenClaimed(resultClaimed);
 
-      console.log("Token Claimed:" + resultClaimed);
-      const XXXX = [
-        "0x297570c7572e3766588931181a6821e94e6b5c54ffcb77ddd26873cf0942d8d5",
-      ];
-      const verify = await getVerifyMerkleTree(XXXX, account);
+      const verify = await getVerifyMerkleTree(proof, account);
       setWhitelistValid(verify);
-
-      console.log("Verify:" + verify);
 
       setLoading(false);
     }

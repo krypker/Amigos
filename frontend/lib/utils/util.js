@@ -33,7 +33,7 @@ export const popupImage = (picture) => {
     cancelButtonText: "Close",
     focusConfirm: false,
     imageAlt: "AMIGO 409",
-    onOpen: () => Swal.disableConfirmButton(),
+    //onOpen: () => Swal.disableConfirmButton(),
   });
 };
 
@@ -88,7 +88,6 @@ export const popupForm = () => {
             });
           })
           .catch((e) => {
-            console.log(e);
             Swal.fire({
               icon: "error",
               title: "Transaction failed",
@@ -100,6 +99,27 @@ export const popupForm = () => {
   });
 };
 
+export const checkIsMerkleTreeValidJson = async (account) => {
+  const { MerkleTree } = require("merkletreejs");
+  const keccak256 = require("keccak256");
+  const whitelist = require("../../data/whitelist.json");
+  const whitelistLeafNodes = whitelist.map((addr) => keccak256(addr));
+
+  const merkleTree = new MerkleTree(whitelistLeafNodes, keccak256, {
+    sortPairs: true,
+  });
+
+  const hashedAddress = keccak256(account);
+  const proof = merkleTree.getHexProof(hashedAddress);
+  const root = merkleTree.getHexRoot();
+  const valid = merkleTree.verify(proof, hashedAddress, root);
+
+  return {
+    proof,
+    valid,
+  };
+};
+
 export const checkIsMerkleTreeValid = async (account) => {
   const { MerkleTree } = require("merkletreejs");
   const keccak256 = require("keccak256");
@@ -108,9 +128,11 @@ export const checkIsMerkleTreeValid = async (account) => {
   const result = await response.data;
   const whitelist = result.map((item) => item.address);
   const whitelistLeafNodes = whitelist.map((addr) => keccak256(addr));
+
   const merkleTree = new MerkleTree(whitelistLeafNodes, keccak256, {
     sortPairs: true,
   });
+
   const hashedAddress = keccak256(account);
   const proof = merkleTree.getHexProof(hashedAddress);
   const root = merkleTree.getHexRoot();

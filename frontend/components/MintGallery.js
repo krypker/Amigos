@@ -7,6 +7,7 @@ import {
 } from "../lib/utils/_web3";
 import {
   checkIsMerkleTreeValid,
+  checkIsMerkleTreeValidJson,
   joinDataArray,
   popupConfirmation,
 } from "../lib/utils/util";
@@ -45,7 +46,7 @@ export default function MintGallery() {
     }
 
     async function chackValidMerkleTree() {
-      const { proof } = await checkIsMerkleTreeValid(account);
+      const { proof } = await checkIsMerkleTreeValidJson(account);
       setWhitelistProof(proof);
 
       const resultClaimed = await tokenIsClaimed(account);
