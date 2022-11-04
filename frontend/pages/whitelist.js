@@ -15,12 +15,10 @@ const Whitelist = () => {
   const [filter, setFilter] = useState([]);
   const [query, setQuery] = useState("");
   const owner_address = process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
-  
+
   useEffect(() => {
     async function getDataArray() {
-      const { data } = await axios.get(
-        "/api/getUsers"
-      );
+      const { data } = await axios.get("/api/getUsers");
       setFilter(data);
     }
     getDataArray();
@@ -29,13 +27,10 @@ const Whitelist = () => {
   const goToSearch = async (e) => {
     e.preventDefault();
 
-    const result = await fetch(
-      `/api/getUser?query=${query}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const result = await fetch(`/api/getUser?query=${query}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
 
     setFilter(await result.json());
   };
@@ -75,12 +70,15 @@ const Whitelist = () => {
             </h1>
           </div>
         ) : (
-          <div className='w-5/6 px-5 py-1 mx-auto flex flex-wrap items-top gap-x-14 mb-28'>
+          <div
+            className='w-5/6 px-5 py-1 mx-auto flex flex-wrap items-top gap-x-14 mb-28'
+            style={{ caretcolor: "transparent" }}
+          >
             <div className='lg:w-2/6 md:w-full bg-gray-200 rounded-lg p-8 h-max w-full mt-10 md:mt-0'>
               <UserForm updateData={setFilter} />
             </div>
-            <div className='lg:w-3/5 md:w-full md:mt-0 lg:pr-0 pr-0'>
-              <div className='my-0 mx-auto lg:text-right md:text-center sm:text-center lg:mt-0 md:mt-10 sm:mt-10 lg:'>
+            <div style={{ caretcolor: "transparent" }} className='lg:w-3/5 md:w-full md:mt-0 lg:pr-0 pr-0'>
+              <div  className='my-0 mx-auto lg:text-right md:text-center sm:text-center lg:mt-0 md:mt-10 sm:mt-10 lg:'>
                 <input
                   className='w-1/2 p-2 mx-3 mb-5 rounded-md border-2 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-200 outline-none text-gray-700'
                   placeholder='Search name or address'

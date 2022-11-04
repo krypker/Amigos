@@ -65,7 +65,7 @@ export default function Login() {
   }, []);
 
   imgAvatar = active && tokenAvatar && !urlWhiteList && (
-    <div className='mx-auto'>
+    <div className='mx-auto' key='1'>
       <img
         className='mx-auto mb-4'
         onClick={() => popupImage(`${tokenAvatar}`)}
@@ -79,6 +79,7 @@ export default function Login() {
 
   imgNoWhiteList = active && !whitelistValid && (
     <div
+      key='2'
       className='text-zinc-600 font-semibold p-2 leading-tight flex flex-col justify-center items-center mx-auto border border-solid border-neutral-400'
       style={{ width: "100px", height: "100px" }}
     >
@@ -91,6 +92,7 @@ export default function Login() {
     !tokenClaimed &&
     OWNER_ADDRESS != account && (
       <div
+        key='3'
         className='text-zinc-600 font-semibold p-2 leading-tight flex flex-col justify-center items-center mx-auto border border-solid border-neutral-400'
         style={{ width: "100px", height: "100px" }}
       >
