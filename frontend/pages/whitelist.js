@@ -1,7 +1,7 @@
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import axios from "axios";
 import useMetaMask from "../lib/hooks/metamask";
-import React, { useState } from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import UserForm from "../components/UserForm";
@@ -10,27 +10,39 @@ import Separator from "../components/Separator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTrash, faRemove } from "@fortawesome/free-solid-svg-icons";
 
-const Whitelist = ({ data }) => {
+const Whitelist = () => {
   const { isActive, account } = useMetaMask() || {};
-  const [filter, setFilter] = useState(data);
+  const [filter, setFilter] = useState([]);
   const [query, setQuery] = useState("");
-  const owner_address = "0x6E6752e757282f5907E9898804a716bcD8373b4a"
-  //process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
+  const owner_address = process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
+  
+  useEffect(() => {
+    async function getDataArray() {
+      const { data } = await axios.get(
+        "/api/getUsers"
+      );
+      setFilter(data);
+    }
+    getDataArray();
+  }, []);
 
   const goToSearch = async (e) => {
     e.preventDefault();
 
-    const result = await fetch(`https://amigos-ten.vercel.app/api/getUser?query=${query}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
+    const result = await fetch(
+      `/api/getUser?query=${query}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
 
     setFilter(await result.json());
   };
 
   const goToReset = async (e) => {
     e.preventDefault();
-    const result = await fetch("https://amigos-ten.vercel.app/api/getUsers", {
+    const result = await fetch("/api/getUsers", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -100,6 +112,7 @@ const Whitelist = ({ data }) => {
   );
 };
 
+/*
 export const getServerSideProps = async () => {
   const { data } = await axios.get(
     "https://amigos-ten.vercel.app/api/getUsers"
@@ -108,6 +121,7 @@ export const getServerSideProps = async () => {
     props: { data },
   };
 };
+*/
 
 //http://localhost:3000/api/getUsers
 

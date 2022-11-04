@@ -21,7 +21,8 @@ export default function Login() {
   let imgMintAvailable = null;
 
   const OWNER_ADDRESS = "0x6E6752e757282f5907E9898804a716bcD8373b4a";
-  //process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
+  console.log(process.env.NEXT_PUBLIC_OWNER_ACCOUNT);
+  console.log("Login")
 
   useEffect(() => {
     if (!active || !account) {
@@ -40,8 +41,12 @@ export default function Login() {
       const resultClaimed = await tokenIsClaimed(account);
       setTokenClaimed(resultClaimed);
 
+      console.log("Token Claimed:" + resultClaimed);
+
       const verify = await getVerifyMerkleTree(proof, account);
       setWhitelistValid(verify);
+
+      console.log("Verify:" +verify);
 
       setLoading(false);
     }
