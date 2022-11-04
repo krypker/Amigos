@@ -20,9 +20,7 @@ export default function Login() {
   let imgNoWhiteList = null;
   let imgMintAvailable = null;
 
-  const OWNER_ADDRESS = "0x6E6752e757282f5907E9898804a716bcD8373b4a";
-  console.log(process.env.NEXT_PUBLIC_OWNER_ACCOUNT);
-  console.log("Login");
+  const OWNER_ADDRESS = process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
 
   useEffect(() => {
     if (!active || !account) {
@@ -32,10 +30,9 @@ export default function Login() {
 
     async function chackValidMerkleTree() {
       setLoading(true);
-      console.log("Avatar");
-      const { proof } = await checkIsMerkleTreeValid(account);
 
-      console.log("Avatar2");
+      //const { proof } = await checkIsMerkleTreeValid(account);
+      //console.log(proof);
       const resultAvatar = await getTokenAvatar(account);
       setTokenAvatar(resultAvatar);
       console.log("Token Claimed:" + resultAvatar);
@@ -44,8 +41,10 @@ export default function Login() {
       setTokenClaimed(resultClaimed);
 
       console.log("Token Claimed:" + resultClaimed);
-
-      const verify = await getVerifyMerkleTree(proof, account);
+      const XXXX = [
+        "0x297570c7572e3766588931181a6821e94e6b5c54ffcb77ddd26873cf0942d8d5",
+      ];
+      const verify = await getVerifyMerkleTree(XXXX, account);
       setWhitelistValid(verify);
 
       console.log("Verify:" + verify);
