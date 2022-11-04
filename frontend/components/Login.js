@@ -22,7 +22,7 @@ export default function Login() {
 
   const OWNER_ADDRESS = "0x6E6752e757282f5907E9898804a716bcD8373b4a";
   console.log(process.env.NEXT_PUBLIC_OWNER_ACCOUNT);
-  console.log("Login")
+  console.log("Login");
 
   useEffect(() => {
     if (!active || !account) {
@@ -32,11 +32,13 @@ export default function Login() {
 
     async function chackValidMerkleTree() {
       setLoading(true);
-
+      console.log("Avatar");
       const { proof } = await checkIsMerkleTreeValid(account);
 
+      console.log("Avatar2");
       const resultAvatar = await getTokenAvatar(account);
       setTokenAvatar(resultAvatar);
+      console.log("Token Claimed:" + resultAvatar);
 
       const resultClaimed = await tokenIsClaimed(account);
       setTokenClaimed(resultClaimed);
@@ -46,7 +48,7 @@ export default function Login() {
       const verify = await getVerifyMerkleTree(proof, account);
       setWhitelistValid(verify);
 
-      console.log("Verify:" +verify);
+      console.log("Verify:" + verify);
 
       setLoading(false);
     }
