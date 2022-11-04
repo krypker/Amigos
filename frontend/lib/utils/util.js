@@ -104,7 +104,7 @@ export const popupForm = () => {
 export const checkIsMerkleTreeValid = async (account) => {
   const { MerkleTree } = require("merkletreejs");
   const keccak256 = require("keccak256");
-  const url = "http://127.0.0.1:3000/api/getAddress";
+  const url = "/api/getAddress";
   const response = await axios.get(url);
   const result = await response.data;
   const whitelist = result.map((item) => item.address);
