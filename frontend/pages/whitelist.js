@@ -14,12 +14,13 @@ const Whitelist = ({ data }) => {
   const { isActive, account } = useMetaMask() || {};
   const [filter, setFilter] = useState(data);
   const [query, setQuery] = useState("");
-  const owner_address = process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
+  const owner_address = "0x6E6752e757282f5907E9898804a716bcD8373b4a"
+  //process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
 
   const goToSearch = async (e) => {
     e.preventDefault();
 
-    const result = await fetch(`/api/getUser?query=${query}`, {
+    const result = await fetch(`https://amigos-ten.vercel.app/api/getUser?query=${query}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -29,7 +30,7 @@ const Whitelist = ({ data }) => {
 
   const goToReset = async (e) => {
     e.preventDefault();
-    const result = await fetch("/api/getUsers", {
+    const result = await fetch("https://amigos-ten.vercel.app/api/getUsers", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -100,10 +101,14 @@ const Whitelist = ({ data }) => {
 };
 
 export const getServerSideProps = async () => {
-  const { data } = await axios.get("http://localhost:3000/api/getUsers");
+  const { data } = await axios.get(
+    "https://amigos-ten.vercel.app/api/getUsers"
+  );
   return {
     props: { data },
   };
 };
+
+//http://localhost:3000/api/getUsers
 
 export default Whitelist;

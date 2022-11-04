@@ -20,7 +20,8 @@ export default function Login() {
   let imgNoWhiteList = null;
   let imgMintAvailable = null;
 
-  const OWNER_ADDRESS = process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
+  const OWNER_ADDRESS = "0x6E6752e757282f5907E9898804a716bcD8373b4a";
+  //process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
 
   useEffect(() => {
     if (!active || !account) {

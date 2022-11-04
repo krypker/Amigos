@@ -10,7 +10,8 @@ import Link from "next/link";
 const Header = () => {
   const { isActive, account } = useMetaMask() || {};
   const [hiddenMenu, setHiddenMenu] = useState(true);
-  const owner_address = process.env.NEXT_PUBLIC_OWNER_ACCOUNT;
+  const owner_address = "0x6E6752e757282f5907E9898804a716bcD8373b4a";
+  console.log(process.env.NEXT_PUBLIC_OWNER_ACCOUNT);
 
   return (
     <div className='flex justify-between lg:justify-center items-center mx-auto w-full'>

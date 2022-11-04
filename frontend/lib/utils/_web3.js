@@ -1,7 +1,8 @@
 import Web3 from "web3";
 import React from "react";
 
-const NFT_ADDRESS = "0x040779F75D052BE3Dfad58d6EB6f6356b082BBad"; //process.env.NEXT_PUBLIC_NFT_ADDRESS;
+const NFT_ADDRESS = "0x040779F75D052BE3Dfad58d6EB6f6356b082BBad"; 
+//process.env.NEXT_PUBLIC_NFT_ADDRESS;
 const web3 = new Web3(Web3.givenProvider);
 const contractABI = require("../../data/Mint409.json");
 
