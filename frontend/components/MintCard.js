@@ -1,7 +1,6 @@
 import React from "react";
 import { popupImage } from "../lib/utils/util";
 import { ENSName } from "react-ens-name";
-import Image from "next/image";
 
 export default function MintCard({
   identificador,
@@ -51,7 +50,11 @@ export default function MintCard({
 
       {contract && owner && (
         <p className='text-gray-500 text-center text-sm pt-2'>
-          <ENSName address={owner} displayType={"FIRST4"}></ENSName>
+          <ENSName
+            address={owner}
+            displayType={"FIRST4_LAST4"}
+            withEllipses
+          ></ENSName>
         </p>
       )}
     </div>

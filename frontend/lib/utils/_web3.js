@@ -2,9 +2,14 @@ import Web3 from "web3";
 import React from "react";
 
 const NFT_ADDRESS = process.env.NEXT_PUBLIC_NFT_ADDRESS;
-const web3 = new Web3(Web3.givenProvider);
-const contractABI = require("../../data/Mint409.json");
+const PROVIDER_INFURA = process.env.NEXT_PUBLIC_PROVIDER_INFURA;
 
+const web3 = new Web3(
+  new Web3.providers.HttpProvider(
+    `https://goerli.infura.io/v3/${PROVIDER_INFURA}`
+  )
+);
+const contractABI = require("../../data/Mint409.json");
 export const mint409 = new web3.eth.Contract(contractABI.abi, NFT_ADDRESS);
 
 export const getTokenAvatar = async (account) => {
@@ -148,7 +153,8 @@ export const getTokenCount = async () => {
     .then(function (res) {
       return res;
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       return [];
     });
 

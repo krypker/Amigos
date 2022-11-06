@@ -9,7 +9,7 @@ export default function Home() {
     <div className='bg-white h-screen container mx-auto'>
       <Head>
         <title>409 Amigos</title>
-        <meta name='description' content='Project 409' />
+        <meta name='description' content='409 AMIGOS' />
         <link rel='icon' />
       </Head>
 
@@ -20,23 +20,24 @@ export default function Home() {
           message={
             <Fragment>
               AMIGOS are 409 friends, artists and enthusiasts who love IDM,
-              experimental techno, glitch, noise and electronic. Some of them
-              may like 409 music and everyone is taking part in his music quest.
+              glitch, experimental techno, noise and the like. Some of them may
+              like 409 music and everyone is taking part in his music quest.
               <br />
               <br />
-              This unique member token gives you access to the Discord where we
-              will form a community to interact and collaborate. I will try hard
-              to distribute this membership to people who really belong to this
-              community.
+              This is a private slow mint. The allow list will be updated from
+              time to time and people in the list will be able to mint one AMIGO
+              of their choice..
               <br />
               <br />
-              You can apply for one
-              <a className='text-pink-600 cursor-pointer font-bold'>
-                {" "}
-                here.
-              </a>{" "}
-              If you are selected you will be able to mint one AMIGO of your
-              choice.
+              You can have more info and apply for an AMIGO &nbsp;
+              <a
+                className='text-pink-600 cursor-pointer font-bold'
+                rel='noreferrer'
+                href='https://409.gitbook.io/409-amigos/'
+                target='_blank'
+              >
+                here. &nbsp;
+              </a>
             </Fragment>
           }
         />

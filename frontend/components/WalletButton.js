@@ -25,7 +25,11 @@ export default function WalletButton() {
         }
       >
         {isActive && (
-          <ENSName address={account} displayType={"FIRST6"}></ENSName>
+          <ENSName
+            address={account}
+            displayType={"FIRST4_LAST4"}
+            withEllipses
+          ></ENSName>
         )}
       </button>
       <Login />

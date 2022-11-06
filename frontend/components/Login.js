@@ -60,7 +60,7 @@ export default function Login() {
     checkWhiteListPage();
   }, []);
 
-  imgAvatar = active && tokenAvatar && !urlWhiteList && (
+  imgAvatar = active && tokenAvatar && !urlWhiteList && active && (
     <div className='mx-auto' key='1'>
       <img
         className='mx-auto mb-4'
@@ -98,7 +98,7 @@ export default function Login() {
 
   return (
     <div className='lg:w-48 lg:absolute top-14 mb-0 mt-2 justify-center text-center text-gray-400 text-base md:pb-5 sm:pb-5'>
-      {loading ? (
+      {loading && active ? (
         <div className='h-auto p-0 text-center d-none'>
           <BeatLoader color='#909090' loading={loading} size={5} />
         </div>

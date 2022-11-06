@@ -24,7 +24,7 @@ const Header = () => {
             </Link>
           </li>
           <li key='2'>
-            <Link href='https://discord.gg/B9Z37vYnNv'>
+            <Link href='https://discord.gg/wuDCbbZHFE'>
               <a target='_blank' className='social'>
                 <FontAwesomeIcon icon={faDiscord} />
               </a>

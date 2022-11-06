@@ -33,7 +33,6 @@ export const popupImage = (picture) => {
     cancelButtonText: "Close",
     focusConfirm: false,
     imageAlt: "AMIGO 409",
-    //onOpen: () => Swal.disableConfirmButton(),
   });
 };
 
@@ -148,6 +147,7 @@ export const joinDataArray = async (tokenMinting) => {
   const tokenMinted = await getContractTokenID();
   const tokenOwners = await getContractOwners();
   const totalMinted = await getTokenCount();
+  console.log(totalMinted)
 
   const arrayTokens = images.map((item) => ({
     ...item,
